@@ -1,8 +1,3 @@
-pip install -U pip
-pip install streamlit
-pip install networkx
-
-
 import streamlit as st
 import pandas as pd
 import geopandas as gpd
