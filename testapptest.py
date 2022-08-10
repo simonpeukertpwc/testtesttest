@@ -1,7 +1,6 @@
 
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import geopandas as gpd
 import json
 
@@ -56,28 +55,9 @@ For this purpose, we leverage a wide range of data points from various pubic dat
 
 data = load_data()
 
-if nav == "Data Exploration":
-  st.write("This is Data Exploration")
-  choice_data_exp = st.selectbox("Select a Feature", list(data.drop(["geometry","GMDNAME","linregModel","knnModel","rfModel","xgbrModel","ensemble"], axis=1).columns))
-  col1, col2, col3, col4, col5, col6 = st.columns(6)
-  col1.metric("Min", str(data[choice_data_exp].min().round(
-      2))+" "+get_data_unit(choice_data_exp))
-  col2.metric("q1", str(data[choice_data_exp].quantile(
-      q=0.25).round(2))+" "+get_data_unit(choice_data_exp))
-  col3.metric("Average", str(data[choice_data_exp].mean().round(
-      2))+" "+get_data_unit(choice_data_exp))
-  col4.metric("q3", str(data[choice_data_exp].quantile(
-      q=0.75).round(2))+" "+get_data_unit(choice_data_exp))
-  col5.metric("Max", str(data[choice_data_exp].max().round(
-      2))+" "+get_data_unit(choice_data_exp))
-  col6.metric("SD", str(data[choice_data_exp].std().round(
-      2))+" "+get_data_unit(choice_data_exp))
-  fig = px.histogram(data[choice_data_exp], nbins=int(
-      len(data[choice_data_exp])**0.5))
-  st.plotly_chart(fig, use_container_width=True)
-  st.dataframe(data.drop("geometry", axis=1))
 
-elif nav == "Location Optimizer":
+
+if nav == "Location Optimizer":
   choice_model = st.selectbox("Select a Model", ["linregModel","knnModel","rfModel","xgbrModel","ensemble"])
 
   col1, col2, col3 = st.columns(3)
