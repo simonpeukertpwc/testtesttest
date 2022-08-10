@@ -1,3 +1,5 @@
+conda install -c conda-forge geopandas
+
 import streamlit as st
 import pandas as pd
 import geopandas as gpd
