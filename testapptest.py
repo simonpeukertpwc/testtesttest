@@ -1,4 +1,4 @@
-conda install -c conda-forge geopandas
+pip install git+git://github.com/geopandas/geopandas.git
 
 import streamlit as st
 import pandas as pd
